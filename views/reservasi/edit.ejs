@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Reservasi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container mt-4">
+        <h2>Edit Reservasi</h2>
+        <form action="/reservasi/update/<%= reservasi.id_reservasi %>" method="POST">
+            <div class="mb-3">
+                <label class="form-label">ID Reservasi:</label>
+                <input type="text" name="id_reservasi" class="form-control" value="<%= reservasi.id_reservasi %>" required readonly>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">No RM:</label>
+                <input type="text" name="no_rm" class="form-control" value="<%= reservasi.no_rm %>" required readonly>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Nama Poli:</label>
+                <select name="id_poli" class="form-select" required>
+                    <% poli.forEach((poli) => { %>
+                        <option value="<%= poli.id_poli %>" <%= reservasi.id_poli === poli.id_poli ? 'selected' : '' %>><%= poli.nama_poli %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Nama Dokter:</label>
+                <select name="id_dokter" class="form-select" required>
+                    <% dokter.forEach((dokter) => { %>
+                        <option value="<%= dokter.id_dokter %>" <%= reservasi.id_dokter === dokter.id_dokter ? 'selected' : '' %>><%= dokter.nama_dokter %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">No Antrian:</label>
+                <input type="text" name="no_antrian" class="form-control" value="<%= reservasi.no_antrian %>" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href="/reservasi" class="btn btn-secondary">Batal</a>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
